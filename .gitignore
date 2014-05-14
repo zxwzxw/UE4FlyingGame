@@ -1,0 +1,9 @@
+/Binaries
+/Content
+/Intermediate
+/Plugins
+/Saved
+*.suo
+*.sln
+*.sdf
+*.opensdf
