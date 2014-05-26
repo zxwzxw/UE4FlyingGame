@@ -1,7 +1,11 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 #include "FH_Flying.h"
-#include "FH_FlyingPawn.h"
+#include "Player/FH_FlyingPawn.h"
+
+#include "IFlathead.h"
+
+using namespace v8;
 
 AFH_FlyingPawn::AFH_FlyingPawn(const class FPostConstructInitializeProperties& PCIP) 
 	: Super(PCIP)
@@ -43,9 +47,57 @@ AFH_FlyingPawn::AFH_FlyingPawn(const class FPostConstructInitializeProperties& P
 	CurrentForwardSpeed = 500.f;
 }
 
+void AFH_FlyingPawn::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	Expose();
+}
+
+void AFH_FlyingPawn::Expose()
+{
+	if (!IFlathead::IsAvailable())
+		return;
+
+	IFlathead &ref = IFlathead::Get();
+	HandleScope handle_scope(ref.GetIsolate());
+
+	Local<Context> context = ref.GetGlobalContext();
+	Context::Scope ContextScope(context);
+
+	Local<Object> Bob = ref.Expose(this, TEXT("Bob"));
+
+	Bob->Set(String::NewFromUtf8(ref.GetIsolate(), "value", String::kInternalizedString), Number::New(ref.GetIsolate(), 42));
+
+	Local<String> key = String::NewFromUtf8(ref.GetIsolate(), "test", String::kInternalizedString);
+	
+	// Bob->Set(key, Function::New(ref.GetIsolate(), AFH_FlyingPawn::JS_MoveRightInput));
+
+	ref.LoadGameScript("BobTest.js");
+ }
+
+void AFH_FlyingPawn::JS_MoveRightInput(const FunctionCallbackInfo<Value>& args)
+{
+	double newValue = 0;
+
+	Local<Object> self = args.Holder();
+	Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+	void* ptr = wrap->Value();
+
+	AFH_FlyingPawn *fp = static_cast<AFH_FlyingPawn*>(ptr);
+
+	newValue = args[0]->NumberValue();
+
+	fp->MoveRightInput(newValue);
+
+	args.GetReturnValue().Set(Boolean::New(args.GetIsolate(), true));
+}
+
 void AFH_FlyingPawn::Tick(float DeltaSeconds)
 {
 	const FVector LocalMove = FVector(CurrentForwardSpeed * DeltaSeconds, 0.f, 0.f);
+
+	UE_LOG(LogFlying, Log, TEXT("Position %d %d %d"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
 
 	// Move plan forwards (with sweep so we stop when we collide with things)
 	AddActorLocalOffset(LocalMove, true);

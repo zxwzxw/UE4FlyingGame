@@ -8,5 +8,7 @@ public class FH_Flying : ModuleRules
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
         PrivateDependencyModuleNames.AddRange(new string[] { "Flathead" });
+
+        PublicIncludePaths.Add("FH_Flying");
 	}
 }

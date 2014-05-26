@@ -3,8 +3,22 @@
 #include "FH_Flying.h"
 #include "FH_Flying.generated.inl"
 
-IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, FH_Flying, "FH_Flying");
+#include "IFlathead.h"
 
 DEFINE_LOG_CATEGORY(LogFlying)
+
+IMPLEMENT_PRIMARY_GAME_MODULE(FFlyingSampleModule, FH_Flying, "FH_Flying");
+
+void FFlyingSampleModule::StartupModule()
+{
+	if (IFlathead::IsAvailable())
+	{
+		IFlathead::Get().LoadGameScript("GameInit.js");
+	}
+}
+
+void FFlyingSampleModule::ShutdownModule()
+{
+}
 
  

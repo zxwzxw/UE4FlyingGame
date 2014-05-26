@@ -7,7 +7,7 @@ UCLASS(minimalapi)
 class AFH_FlyingGameMode : public AGameMode
 {
 	GENERATED_UCLASS_BODY()
-
+		void Tick(float DeltaSeconds);
 };
 
 
