@@ -69,10 +69,6 @@ void AFH_FlyingPawn::Expose()
 
 	Bob->Set(String::NewFromUtf8(ref.GetIsolate(), "value", String::kInternalizedString), Number::New(ref.GetIsolate(), 42));
 
-	Local<String> key = String::NewFromUtf8(ref.GetIsolate(), "test", String::kInternalizedString);
-	
-	// Bob->Set(key, Function::New(ref.GetIsolate(), AFH_FlyingPawn::JS_MoveRightInput));
-
 	ref.LoadGameScript("BobTest.js");
  }
 
