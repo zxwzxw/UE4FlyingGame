@@ -5,12 +5,12 @@
 	"EngineVersion": "4.1.1-2066463+++depot+UE4-Releases+4.1",
 	"PackageFileUE4Version": 352,
 	"PackageFileLicenseeUE4Version": 0,
-	"EngineAssociation": "4.1",
-	"FriendlyName": "",
+	"EngineAssociation": "4.2",
+	"FriendlyName": "Sample Flying Game",
 	"Description": "",
-	"Category": "",
-	"CreatedBy": "",
-	"CreatedByURL": "",
+	"Category": "Gneu.org",
+	"CreatedBy": "Bob Chatman III <Bob@gneu.org> ",
+	"CreatedByURL": "gneu.org",
 	"Modules": [
 		{
 			"Name": "FH_Flying",
