@@ -32,8 +32,8 @@ public:
 	TSubobjectPtr<class UCameraComponent> Camera;
 
 	// Begin AActor overrides
-	virtual void Tick(float DeltaSeconds) OVERRIDE;
-	virtual void ReceiveHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) OVERRIDE;
+	virtual void Tick(float DeltaSeconds) override;
+	virtual void ReceiveHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
 	// End AActor overrides
 
 	static void JS_MoveRightInput(const v8::FunctionCallbackInfo<v8::Value>& args);
@@ -41,8 +41,8 @@ public:
 protected:
 
 	// Begin APawn overrides
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) OVERRIDE; // Allows binding actions/axes to functions
-	virtual void PostInitializeComponents() OVERRIDE;
+	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override; // Allows binding actions/axes to functions
+	virtual void PostInitializeComponents() override;
 	// End APawn overrides
 
 	/** Bound to the vertical axis */

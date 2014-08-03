@@ -8,8 +8,8 @@
 
 class FFlyingSampleModule : public FDefaultGameModuleImpl
 {
-	virtual void StartupModule() OVERRIDE;
-	virtual void ShutdownModule() OVERRIDE;
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
 };
 
 namespace Objects
