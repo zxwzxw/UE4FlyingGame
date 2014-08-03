@@ -10,9 +10,9 @@ IMPLEMENT_PRIMARY_GAME_MODULE(FFlyingSampleModule, FH_Flying, "FH_Flying");
 
 void FFlyingSampleModule::StartupModule()
 {
-	if (IFlathead::IsAvailable())
+	if (Flathead::IsAvailable())
 	{
-		IFlathead::Get().LoadGameScript("GameInit.js");
+		Flathead::Get().LoadGameScript("GameInit.js");
 	}
 }
 

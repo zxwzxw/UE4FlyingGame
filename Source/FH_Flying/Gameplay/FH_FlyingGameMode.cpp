@@ -18,8 +18,8 @@ void AFH_FlyingGameMode::Tick(float DeltaSeconds)
 
 	UE_LOG(LogFlying, Log, TEXT("%s"), *jsEvent);
 
-	if (IFlathead::IsAvailable())
+	if (Flathead::IsAvailable())
 	{
-		IFlathead::Get().Execute(jsEvent, TEXT("GameMode"));
+		Flathead::Get().Execute(jsEvent, TEXT("GameMode"));
 	}
 }

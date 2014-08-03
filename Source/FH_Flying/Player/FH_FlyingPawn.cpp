@@ -56,10 +56,10 @@ void AFH_FlyingPawn::PostInitializeComponents()
 
 void AFH_FlyingPawn::Expose()
 {
-	if (!IFlathead::IsAvailable())
+	if (!Flathead::IsAvailable())
 		return;
 
-	IFlathead &ref = IFlathead::Get();
+	Flathead &ref = Flathead::Get();
 	HandleScope handle_scope(ref.GetIsolate());
 
 	Local<Context> context = ref.GetGlobalContext();
