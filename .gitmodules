@@ -1,0 +1,3 @@
+[submodule "Plugins/Flathead"]
+	path = Plugins/Flathead
+	url = https://github.com/BobGneu/Flathead.git
