@@ -36,7 +36,7 @@ public:
 	virtual void ReceiveHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
 	// End AActor overrides
 
-	static void JS_MoveRightInput(const v8::FunctionCallbackInfo<v8::Value>& args);
+	static void JS_UpdateImpulse(const v8::FunctionCallbackInfo<v8::Value>& args);
 
 protected:
 

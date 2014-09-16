@@ -60,6 +60,7 @@ void AFH_FlyingPawn::Expose()
 		return;
 
 	Flathead &ref = Flathead::Get();
+	Isolate::Scope isolate_scope(ref.GetIsolate());
 	HandleScope handle_scope(ref.GetIsolate());
 
 	Local<Context> context = ref.GetGlobalContext();
@@ -67,12 +68,13 @@ void AFH_FlyingPawn::Expose()
 
 	Local<Object> Bob = ref.Expose(this, TEXT("Bob"));
 
-	Bob->Set(String::NewFromUtf8(ref.GetIsolate(), "value", String::kInternalizedString), Number::New(ref.GetIsolate(), 42));
+	Bob->Set(String::NewFromUtf8(ref.GetIsolate(), "value"), Number::New(ref.GetIsolate(), 42));
+	// Bob->Set(String::NewFromUtf8(ref.GetIsolate(), "updateImpulse"), FunctionTemplate::New(ref.GetIsolate(), AFH_FlyingPawn::JS_UpdateImpulse)->GetFunction());
 
 	ref.LoadGameScript("BobTest.js");
  }
 
-void AFH_FlyingPawn::JS_MoveRightInput(const FunctionCallbackInfo<Value>& args)
+void AFH_FlyingPawn::JS_UpdateImpulse(const FunctionCallbackInfo<Value>& args)
 {
 	double newValue = 0;
 
